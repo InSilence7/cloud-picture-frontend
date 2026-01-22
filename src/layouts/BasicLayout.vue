@@ -33,7 +33,7 @@ import GlobalHeader from '@/components/GlobalHeader.vue';
 
 
 #basic-layout .centent {
-  background: linear-gradient(to right, #fefefe, #808080);
+  background: linear-gradient(to right, #fefefe, #eaf4ff);
   padding: 20px;
   margin-bottom: 35px;
 

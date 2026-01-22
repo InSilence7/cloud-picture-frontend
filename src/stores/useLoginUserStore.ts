@@ -1,3 +1,4 @@
+import { getLoginUserUsingGet } from '@/api/userController'
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 
@@ -11,7 +12,7 @@ import { ref } from 'vue'
 // }
 
 export const useLoginUserStore = defineStore('loginUser', () => {
-  const loginUser = ref<any>({
+  const loginUser = ref<API.LoginUserVO>({
     userName: '未登录',
   })
 
@@ -22,12 +23,17 @@ export const useLoginUserStore = defineStore('loginUser', () => {
     //   loginUser.value = res.data.data;
     // }
     // 测试用户登录， 3秒后自动登录
-    setTimeout(() => {
-      loginUser.value = {
-        userName: '测试用户',
-        userId: '123456',
-      }
-    }, 1000)
+    // setTimeout(() => {
+    //   loginUser.value = {
+    //     userName: '测试用户',
+    //     userId: '123456',
+    //   }
+    // }, 1000)
+
+    const res = await getLoginUserUsingGet()
+    if (res.data.code === 0 && res.data.data) {
+      loginUser.value = res.data.data
+    }
   }
 
   function setLoginUser(newLoginUser: any) {
